@@ -31,8 +31,8 @@ class _DashboardState extends State<Dashboard> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.category),label: "Category"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: "Cart"),
-          BottomNavigationBarItem(icon: Icon(Icons.person),label: "Profile"),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.person),label: ""),
         ],
         onTap: (pageIndex){
           selectedPage = pageIndex;
