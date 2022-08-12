@@ -23,10 +23,25 @@ class _CategoryState extends State<Category> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text(
-          "category Page",
-          style: TextStyle(fontSize: 30),
+      appBar: AppBar(title: Text("Catagory"),),
+      body: Container(
+        height: MediaQuery.of(context).size.height-100,
+        child: ListView.builder(
+          itemCount: 50,
+          itemBuilder: (BuildContext context, int index){
+            return ListTile(
+              title: Text("This is product no." + (index+1).toString()),
+              subtitle: Row(
+                children: [
+                  Text("product 1_1"),
+                  Text("product 1_2"),
+                ],
+              ),
+              leading: Text((index+1).toString(), style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold ),),
+              trailing: Icon(Icons.arrow_forward_ios),
+            );
+          },
+
         ),
       ),
     );
