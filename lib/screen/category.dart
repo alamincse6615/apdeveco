@@ -30,15 +30,16 @@ class _CategoryState extends State<Category> {
           itemCount: 50,
           itemBuilder: (BuildContext context, int index){
             return ListTile(
-              title: Text("This is product no." + (index+1).toString()),
+              title: Text("This is first product"),
               subtitle: Row(
                 children: [
                   Text("product 1_1"),
                   Text("product 1_2"),
                 ],
               ),
-              leading: Text((index+1).toString(), style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold ),),
-              trailing: Icon(Icons.arrow_forward_ios),
+              leading:
+            Image.network("https://image.shutterstock.com/image-vector/shopping-cart-icon-vector-illustration-260nw-1726574749.jpg"),
+              
             );
           },
 
