@@ -16,27 +16,7 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        elevation: 1,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.green,
-          ),
-          onPressed: () {},
-        ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.green,
-            ),
-            onPressed: () {
-            },
-          ),
-        ],
-      ),
+
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -76,21 +56,22 @@ class _ProfileState extends State<Profile> {
                                       width: MediaQuery.of(context).size.width,
                                       child: Column(
                                         children: [
-                                          FlatButton.icon(
+                                          TextButton.icon(
                                               onPressed: () {
                                                 ImageFile();
                                               },
                                               icon: Icon(Icons.browse_gallery_rounded),
                                               label:
-                                              Text("Gallery")),
-                                          FlatButton.icon(
+                                              Text("Gallery")
+                                          ),
+                                          TextButton.icon(
                                               onPressed: () {
                                                 imagecamera();
                                               },
                                               icon: Icon(Icons.camera),
                                               label:
-                                              Text("Camera")),
-
+                                              Text("Camera")
+                                          ),
                                         ],
                                       ),
 
@@ -163,8 +144,6 @@ class _ProfileState extends State<Profile> {
       "name": name,
       "email": email,
     };
-
-
   }
 }
 

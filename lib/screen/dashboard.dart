@@ -1,3 +1,5 @@
+import 'package:appdeveco/Json/category%20model.dart';
+import 'package:appdeveco/data/categoryData.dart';
 import 'package:appdeveco/screen/cart.dart';
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/home.dart';
@@ -12,17 +14,27 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  var _pages=[
-    Home(),
-    Category(),
-    Cart(),
-    Profile(),
-  ];
+  List<CategoryModel> categoryList = [];
   int selectedPage = 0;
+
+  @override
+  void initState() {
+    getAllData();
+  }
+
+  getAllData()async{
+    CategoryData categoryData = CategoryData();
+    categoryList = await categoryData.getAlCategory();
+    setState(() {
+
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages[selectedPage],
+      body: selectedPage==0?Home(categoryList):(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():Profile())),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         unselectedItemColor: Colors.grey,
@@ -31,17 +43,15 @@ class _DashboardState extends State<Dashboard> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.home),label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.category),label: "Category"),
-          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: ""),
-          BottomNavigationBarItem(icon: Icon(Icons.person),label: ""),
+          BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: "Cart"),
+          BottomNavigationBarItem(icon: Icon(Icons.person),label: "Profile"),
         ],
         onTap: (pageIndex){
-          selectedPage = pageIndex;
           setState(() {
-
+            selectedPage = pageIndex;
           });
         },
       ),
-
     );
   }
 }
