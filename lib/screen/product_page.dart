@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:appdeveco/Json/category%20model.dart';
+import 'package:appdeveco/model/category%20model.dart';
 import 'package:flutter/material.dart';
 
 

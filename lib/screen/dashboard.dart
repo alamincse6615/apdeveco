@@ -1,4 +1,5 @@
-import 'package:appdeveco/Json/category%20model.dart';
+
+import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/data/categoryData.dart';
 import 'package:appdeveco/screen/cart.dart';
 import 'package:appdeveco/screen/category.dart';
@@ -14,7 +15,7 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<CategoryModel> categoryList = [];
+  List<Data> categoryList = [];
   int selectedPage = 0;
 
   @override
@@ -25,6 +26,7 @@ class _DashboardState extends State<Dashboard> {
   getAllData()async{
     CategoryData categoryData = CategoryData();
     categoryList = await categoryData.getAlCategory();
+    print(categoryList);
     setState(() {
 
     });

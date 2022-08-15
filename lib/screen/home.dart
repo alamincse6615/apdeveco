@@ -1,12 +1,12 @@
-import 'package:appdeveco/Json/category%20model.dart';
-import 'package:appdeveco/Json/productModel.dart';
+import 'package:appdeveco/model/category%20model.dart';
+import 'package:appdeveco/model/productModel.dart';
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends StatefulWidget {
-  List<CategoryModel> categoryList;
+  List<Data> categoryList;
   // List<ProductModel> productsList;
   // List<DataModel> dataList;
 
@@ -17,7 +17,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<CategoryModel> categoryList = [];
+  List<Data> categoryList = [];
   // List<ProductModel> productsList = [];
   // List<DataModel> dataList = [];
 
@@ -173,19 +173,24 @@ class _HomeState extends State<Home> {
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(left: 5,right: 5,),
-                    child: Container(
-                      height: 200,
-                      width: 100,
-                      color: Colors.yellow,
-                      child: Column(
-                        children: [
-                          Image.network(
-                              height: 70,
-                         "https://media.istockphoto.com/illustrations/top-10-illustration-id1198212752?k=20&m=1198212752&s=612x612&w=0&h=X_khGMO-kioeJCt72czCPcq_1abX2-tLfY5eIXSr_l4="),
-                          Text("name"),
-                          Text("price"),
+                    child: InkWell(
+                      onTap: (){
+                       // productList[index]
+                      },
+                      child: Container(
+                        height: 200,
+                        width: 100,
+                        color: Colors.yellow,
+                        child: Column(
+                          children: [
+                            Image.network(
+                                height: 70,
+                           "https://media.istockphoto.com/illustrations/top-10-illustration-id1198212752?k=20&m=1198212752&s=612x612&w=0&h=X_khGMO-kioeJCt72czCPcq_1abX2-tLfY5eIXSr_l4="),
+                            Text("name"),
+                            Text("price"),
 
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );
