@@ -3,6 +3,7 @@ import 'package:appdeveco/Json/productModel.dart';
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/product_page.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends StatefulWidget {
   List<CategoryModel> categoryList;
@@ -34,14 +35,87 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: ListView(
         children: [
-          // obaidul
-          Container(
-            height: 250,
-            color: Colors.green,
-            child: Center(
-              child: Text("Obaidul"),
+         CarouselSlider(
+            items:[
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blue
+                  ),
+                  width: 250,
+                  child: Center(child: Text("Saturday",style: TextStyle(fontSize: 50),)),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.green
+                  ),
+                  width: 250,
+                  child: Center(child: Text("Sunday",style: TextStyle(fontSize: 50),)),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.red
+                  ),
+                  width: 250,
+                  child: Center(child: Text("Monday",style: TextStyle(fontSize: 50),)),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.amber
+                  ),
+                  width: 250,
+                  child: Center(child: Text("Tuesday",style: TextStyle(fontSize: 50),)),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.blueAccent
+                  ),
+                  width: 250,
+                  child: Center(child: Text("Wednesday",style: TextStyle(fontSize: 40),)),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.yellowAccent
+                  ),
+                  width: 250,
+                  child: Center(child: Text("Thursday",style: TextStyle(fontSize: 50),)),
+                ),
+              ),
+              Card(
+                child: Container(
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.indigo
+                  ),
+                  width: 250,
+                  child: Center(child: Text("Fryday",style: TextStyle(fontSize: 50),),),
+                ),
+              ),
+
+            ],
+            options: CarouselOptions(
+                autoPlay: true,
+                autoPlayCurve: Curves.easeInBack
             ),
+
           ),
+
           buildHeaderSection("Category"),
           Container(
             height: 150,
