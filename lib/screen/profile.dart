@@ -97,6 +97,7 @@ class _ProfileState extends State<Profile> {
                 child: TextField(
                     controller: nameController,
                     decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.person),
                         border: OutlineInputBorder(), labelText: 'Enter Your Name')
                 ),
               ),
@@ -105,7 +106,17 @@ class _ProfileState extends State<Profile> {
                 child: TextField(
                   controller: emailController,
                   decoration: InputDecoration(
+                      prefixIcon: Icon(Icons.mail),
                       border: OutlineInputBorder(), hintText: 'Enter Your Email'),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: TextField(
+                  controller: passwordController,
+                  decoration: InputDecoration(
+                    suffixIcon: Icon(Icons.visibility_off),
+                      border: OutlineInputBorder(), hintText: 'Enter Your password'),
                 ),
               ),
               ElevatedButton
