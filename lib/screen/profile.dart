@@ -11,6 +11,7 @@ class Profile extends StatefulWidget {
 }
 final nameController = TextEditingController();
 final emailController = TextEditingController();
+final passwordController = TextEditingController();
 File? captureImage;
 class _ProfileState extends State<Profile> {
   @override

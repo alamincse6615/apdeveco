@@ -14,10 +14,10 @@ class _CartrdState extends State<Cart> {
       appBar: AppBar(
         title: Center(child: Text("Cart")),
       ),
-      body: Column(
+      body: ListView(
         children: [
           Container(
-            height: MediaQuery.of(context).size.height-150,
+            height: MediaQuery.of(context).size.height-100,
             width: MediaQuery.of(context).size.width,
 
             child: Stack(
@@ -30,7 +30,7 @@ class _CartrdState extends State<Cart> {
                     itemCount: 20,
                       itemBuilder: (BuildContext context, int index){
                         return Container(
-                          height: 145,
+                          height: 155,
                           width: MediaQuery.of(context).size.width,
                           child: Card(
                             elevation: 5,
@@ -130,7 +130,7 @@ class _CartrdState extends State<Cart> {
                   ),
                 ),
                 Container(
-                  height: 80,
+                  height: 50,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.black.withOpacity(0.8),
                   alignment: Alignment.centerLeft,
