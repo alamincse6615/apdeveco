@@ -47,9 +47,9 @@ class _CategoryState extends State<Category> {
                    ],
                  ),
                  leading: Image.network(
-                 "http://192.168.43.232/appdev/public/"+dataList[index].icon.toString()),
+                 "http://192.168.0.106/appdev/api/v2/categories"+dataList[index].icon.toString()),
                  trailing: Image.network(
-                     "http://192.168.43.232/appdev/public/"+dataList[index].icon.toString()),
+                     "http://192.168.0.106/appdev/api/v2/categories"+dataList[index].icon.toString()),
                ),
              );
            },

@@ -1,5 +1,6 @@
 import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/model/productModel.dart';
+
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/product_page.dart';
 import 'package:flutter/material.dart';
@@ -7,10 +8,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends StatefulWidget {
   List<Data> categoryList;
-  // List<ProductModel> productsList;
-  // List<DataModel> dataList;
+  List<Datal> productsList;
 
-  Home(this.categoryList);
+
+  Home(this.categoryList, this.productsList);
 
   @override
   State<Home> createState() => _HomeState();
@@ -18,7 +19,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Data> categoryList = [];
-  // List<ProductModel> productsList = [];
+  List<Datal> productsList = [];
   // List<DataModel> dataList = [];
 
   @override
@@ -26,6 +27,7 @@ class _HomeState extends State<Home> {
     // TODO: implement initState
     super.initState();
     categoryList = widget.categoryList;
+    productsList = widget.productsList;
     // productsList = widget.productsList;
     // dataList = widget.dataList;
   }
@@ -169,13 +171,16 @@ class _HomeState extends State<Home> {
                     mainAxisSpacing: 10,
 
                     mainAxisExtent: 105),
-                itemCount: 20,
+                itemCount: productsList.length,
                 itemBuilder: (context, index) {
                   return Padding(
                     padding: const EdgeInsets.only(left: 5,right: 5,),
                     child: InkWell(
                       onTap: (){
-                       // productList[index]
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ProductPage(productsList)));
                       },
                       child: Container(
                         height: 200,
@@ -184,10 +189,13 @@ class _HomeState extends State<Home> {
                         child: Column(
                           children: [
                             Image.network(
-                                height: 70,
-                           "https://media.istockphoto.com/illustrations/top-10-illustration-id1198212752?k=20&m=1198212752&s=612x612&w=0&h=X_khGMO-kioeJCt72czCPcq_1abX2-tLfY5eIXSr_l4="),
-                            Text("name"),
-                            Text("price"),
+                              height: 100,
+                              width: 140,
+                              "http://192.168.0.106/appdev/api/v2/products" +
+                                  productsList[index].thumbnailImage.toString(),
+                              fit: BoxFit.cover,
+                            ),
+                            Text("http://192.168.0.106/appdev/api/v2/products"+productsList[index].basePrice.toString()),
 
                           ],
                         ),
@@ -222,7 +230,7 @@ class _HomeState extends State<Home> {
                             builder: (context) => Category(categoryList)));
                   } else if (title == "Product") {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProductPage()));
+                        MaterialPageRoute(builder: (context) => ProductPage(productsList)));
                   }
                 },
                 child: Text("View All",
