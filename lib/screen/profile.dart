@@ -33,7 +33,7 @@ class _ProfileState extends State<Profile> {
                           child: captureImage == null
                               ? CircleAvatar(
                             maxRadius: 100,
-                            backgroundImage: AssetImage("images/download.png"),
+                            backgroundImage: NetworkImage("https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"),
                           )
                               : CircleAvatar(
                             maxRadius: 100,
