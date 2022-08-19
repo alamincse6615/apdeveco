@@ -129,45 +129,50 @@ class _HomeState extends State<Home> {
                    buildHeaderSection("Category"),
                    Container(
                      height: 150,
-                     child: ListView.builder(
-                       scrollDirection: Axis.horizontal,
-                       itemCount: categoryList.length,
-                       itemBuilder: (BuildContext context, int index) {
-                         return Container(
-                           margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                           height: 140,
-                           width: 140,
-                           decoration:
-                           BoxDecoration(border: Border.all(color: Colors.green)),
-                           child: Stack(
-                             children: [
-                               Image.network(
-                                 height: 140,
-                                 width: 140,
-                                 "http://192.168.43.113:81/appdev/public/" +
-                                   categoryList[index].icon.toString(),
-                                 fit: BoxFit.cover,
-                               ),
-                               Container(
-                                 height: 140,
-                                 width: 140,
-                                 alignment: Alignment.bottomCenter,
-                                 decoration: BoxDecoration(),
-                                 child: Container(
-                                     height: 30,
-                                     width: 140,
-                                     color: Color(0x74050505),
-                                     alignment: Alignment.center,
-                                     child: Text(
-                                       categoryList[index].name.toString(),
-                                       style:
-                                       TextStyle(color: Colors.white, fontSize: 18),
-                                     )),
-                               )
-                             ],
-                           ),
-                         );
+                     child: InkWell(
+                       onTap: (){
+
                        },
+                       child: ListView.builder(
+                         scrollDirection: Axis.horizontal,
+                         itemCount: categoryList.length,
+                         itemBuilder: (BuildContext context, int index) {
+                           return Container(
+                             margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                             height: 140,
+                             width: 140,
+                             decoration:
+                             BoxDecoration(border: Border.all(color: Colors.green)),
+                             child: Stack(
+                               children: [
+                                 Image.network(
+                                   height: 140,
+                                   width: 140,
+                                   "http://192.168.43.113:81/appdev/public/" +
+                                     categoryList[index].icon.toString(),
+                                   fit: BoxFit.cover,
+                                 ),
+                                 Container(
+                                   height: 140,
+                                   width: 140,
+                                   alignment: Alignment.bottomCenter,
+                                   decoration: BoxDecoration(),
+                                   child: Container(
+                                       height: 30,
+                                       width: 140,
+                                       color: Color(0x74050505),
+                                       alignment: Alignment.center,
+                                       child: Text(
+                                         categoryList[index].name.toString(),
+                                         style:
+                                         TextStyle(color: Colors.white, fontSize: 18),
+                                       )),
+                                 )
+                               ],
+                             ),
+                           );
+                         },
+                       ),
                      ),
                    ),
                    buildHeaderSection("Product"),
@@ -178,7 +183,8 @@ class _HomeState extends State<Home> {
                              maxCrossAxisExtent: 200,
                              mainAxisSpacing: 10,
                              mainAxisExtent: 105),
-                         itemCount: productList.length,
+                         itemCount: 20,
+                         // itemCount: productList.length,
                          itemBuilder: (context, index) {
                            return Padding(
                              padding: const EdgeInsets.only(left: 5,right: 5,),
@@ -190,16 +196,19 @@ class _HomeState extends State<Home> {
                                child: Container(
                                  height: 200,
                                  width: 100,
+                                 color: Colors.white30,
                                  child: Column(
                                    children: [
-                                     Image.network(
+                                     Image.network("https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
                                          height: 70,
-                                       "http://192.168.43.113:81/appdev/public/" +
-                                           productList[index].thumbnailImage.toString()),
-                                     Text(
-                                     productList[index].name.toString()),
+                                       // "http://192.168.43.113:81/appdev/public/" +
+                                       //     productList[index].thumbnailImage.toString()
+                                     ),
+                                     Text("Name"
+                                     // productList[index].name.toString()
+                                     ),
 
-                                     Text(productList[index].basePrice.toString()),
+                                     Text("price"),
 
                                    ],
                                  ),
