@@ -1,6 +1,7 @@
 
 import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/data/categoryData.dart';
+import 'package:appdeveco/model/productModel.dart';
 import 'package:appdeveco/screen/cart.dart';
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/home.dart';
@@ -17,6 +18,7 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   List<Data> categoryList = [];
+  List<PData> productList = [];
   int selectedPage = 0;
 
   @override
@@ -37,7 +39,8 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: selectedPage==0?Home(categoryList):(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():LoginPage())),
+      body: selectedPage==0?Home(categoryList,productList):(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():LoginPage())),
+
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         unselectedItemColor: Colors.grey,
