@@ -1,6 +1,5 @@
 import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/model/productModel.dart';
-
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/product_page.dart';
 import 'package:flutter/material.dart';
@@ -35,9 +34,16 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ListView(
+        body:
+        SingleChildScrollView(
+        child: Column(
         children: [
-         CarouselSlider(
+        Container(
+        height: MediaQuery.of(context).size.height,
+      width:MediaQuery.of(context).size.width ,
+      child: ListView(
+        children: [
+          CarouselSlider(
             items:[
               Card(
                 child: Container(
@@ -130,13 +136,13 @@ class _HomeState extends State<Home> {
                   height: 140,
                   width: 140,
                   decoration:
-                      BoxDecoration(border: Border.all(color: Colors.green)),
+                  BoxDecoration(border: Border.all(color: Colors.green)),
                   child: Stack(
                     children: [
                       Image.network(
                         height: 140,
                         width: 140,
-                        "http://192.168.43.232/appdev/public/" +
+                        "http://192.168.0.105/appdev/public/" +
                             categoryList[index].icon.toString(),
                         fit: BoxFit.cover,
                       ),
@@ -153,7 +159,7 @@ class _HomeState extends State<Home> {
                             child: Text(
                               categoryList[index].name.toString(),
                               style:
-                                  TextStyle(color: Colors.white, fontSize: 18),
+                              TextStyle(color: Colors.white, fontSize: 18),
                             )),
                       )
                     ],
@@ -191,11 +197,11 @@ class _HomeState extends State<Home> {
                             Image.network(
                               height: 100,
                               width: 140,
-                              "http://192.168.0.106/appdev/api/v2/products" +
+                              "http://192.168.0.105/appdev/api/v2/products" +
                                   productsList[index].thumbnailImage.toString(),
                               fit: BoxFit.cover,
                             ),
-                            Text("http://192.168.0.106/appdev/api/v2/products"+productsList[index].basePrice.toString()),
+                            Text("http://192.168.0.105/appdev/api/v2/products"+productsList[index].basePrice.toString()),
 
                           ],
                         ),
@@ -206,7 +212,17 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
+    ),
+
+    ],
+    )
+        )
     );
+
+
+
+
+
   }
 
   Widget buildHeaderSection(title) {

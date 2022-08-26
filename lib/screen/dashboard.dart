@@ -1,8 +1,6 @@
 
 import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/data/categoryData.dart';
-import 'package:appdeveco/data/productData.dart';
-
 import 'package:appdeveco/screen/cart.dart';
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/home.dart';
