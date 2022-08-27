@@ -9,15 +9,16 @@ class Profile extends StatefulWidget {
   @override
   State<Profile> createState() => _ProfileState();
 }
+
 final nameController = TextEditingController();
 final emailController = TextEditingController();
 final passwordController = TextEditingController();
 File? captureImage;
+
 class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       body: Center(
         child: SingleChildScrollView(
           child: Column(
@@ -33,27 +34,30 @@ class _ProfileState extends State<Profile> {
                           maxRadius: 100,
                           child: captureImage == null
                               ? CircleAvatar(
-                            maxRadius: 100,
-                            backgroundImage: NetworkImage("https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"),
-                          )
+                                  maxRadius: 100,
+                                  backgroundImage: NetworkImage(
+                                      "https://eitrawmaterials.eu/wp-content/uploads/2016/09/person-icon.png"),
+                                )
                               : CircleAvatar(
-                            maxRadius: 100,
-                            backgroundImage: FileImage(
-                              captureImage!,
-                            ),
-                          ),
+                                  maxRadius: 100,
+                                  backgroundImage: FileImage(
+                                    captureImage!,
+                                  ),
+                                ),
                         ),
                       ),
                       Positioned(
                         right: 80,
-                        bottom:5,
+                        bottom: 5,
                         child: TextButton.icon(
                             onPressed: () {
                               showModalBottomSheet(
                                   context: context,
                                   builder: (context) {
                                     return Container(
-                                      height: MediaQuery.of(context).size.height/6,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              6,
                                       width: MediaQuery.of(context).size.width,
                                       child: Column(
                                         children: [
@@ -61,25 +65,20 @@ class _ProfileState extends State<Profile> {
                                               onPressed: () {
                                                 ImageFile();
                                               },
-                                              icon: Icon(Icons.browse_gallery_rounded),
-                                              label:
-                                              Text("Gallery")
-                                          ),
+                                              icon: Icon(
+                                                  Icons.browse_gallery_rounded),
+                                              label: Text("Gallery")),
                                           TextButton.icon(
                                               onPressed: () {
                                                 imagecamera();
                                               },
                                               icon: Icon(Icons.camera),
-                                              label:
-                                              Text("Camera")
-                                          ),
+                                              label: Text("Camera")),
                                         ],
                                       ),
-
                                     );
                                   });
                               //  Navigator.pop(context);
-
                             },
                             icon: Icon(
                               Icons.camera_alt_outlined,
@@ -88,7 +87,6 @@ class _ProfileState extends State<Profile> {
                             label: Text("")),
                       ),
                     ],
-
                   ),
                 ),
               ),
@@ -97,9 +95,9 @@ class _ProfileState extends State<Profile> {
                 child: TextField(
                     controller: nameController,
                     decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.person),
-                        border: OutlineInputBorder(), labelText: 'Enter Your Name')
-                ),
+                        prefixIcon: Icon(Icons.person),
+                        border: OutlineInputBorder(),
+                        labelText: 'Enter Your Name')),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -107,7 +105,8 @@ class _ProfileState extends State<Profile> {
                   controller: emailController,
                   decoration: InputDecoration(
                       prefixIcon: Icon(Icons.mail),
-                      border: OutlineInputBorder(), hintText: 'Enter Your Email'),
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter Your Email'),
                 ),
               ),
               Padding(
@@ -115,12 +114,12 @@ class _ProfileState extends State<Profile> {
                 child: TextField(
                   controller: passwordController,
                   decoration: InputDecoration(
-                    suffixIcon: Icon(Icons.visibility_off),
-                      border: OutlineInputBorder(), hintText: 'Enter Your password'),
+                      suffixIcon: Icon(Icons.visibility_off),
+                      border: OutlineInputBorder(),
+                      hintText: 'Enter Your password'),
                 ),
               ),
-              ElevatedButton
-                (
+              ElevatedButton(
                   onPressed: () {
                     registration();
                   },
@@ -130,8 +129,8 @@ class _ProfileState extends State<Profile> {
         ),
       ),
     );
-
   }
+
   imagecamera() async {
     var image = await ImagePicker().pickImage(source: ImageSource.camera);
     if (image != null) {
@@ -139,6 +138,7 @@ class _ProfileState extends State<Profile> {
       setState(() {});
     }
   }
+
   ImageFile() async {
     var image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image != null) {
@@ -146,11 +146,10 @@ class _ProfileState extends State<Profile> {
       setState(() {});
     }
   }
+
   registration() {
     String name = nameController.text.toString();
     String email = emailController.text.toString().trim();
-
-
     var data = {
       "Images": captureImage,
       "name": name,
@@ -158,5 +157,3 @@ class _ProfileState extends State<Profile> {
     };
   }
 }
-
-

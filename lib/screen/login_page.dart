@@ -9,7 +9,6 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-
   bool loginWithEmail = true;
   String loginWithSectedSection = "Login With ";
   TextEditingController emailController = TextEditingController();
@@ -25,43 +24,40 @@ class _LoginPageState extends State<LoginPage> {
           children: [
             Container(
               padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
-              child: loginWithEmail?emailSection():phoneSection(),
+              child: loginWithEmail ? emailSection() : phoneSection(),
             ),
-
             Container(
               child: TextButton(
-                  onPressed: (){
-                    loginProviderToggle();
-              },
-              child: Text(
-                      loginWithSectedSection+(loginWithEmail?"Phone Number":"Email"),
-                    textAlign: TextAlign.center,
+                onPressed: () {
+                  loginProviderToggle();
+                },
+                child: Text(
+                  loginWithSectedSection +
+                      (loginWithEmail ? "Phone Number" : "Email"),
+                  textAlign: TextAlign.center,
                 ),
-
               ),
               alignment: Alignment.topRight,
             ),
-
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
                 controller: passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  label: Text("Enter Your Password"),
-                  prefixIcon: Icon(Icons.lock),
-                  suffixIcon: Icon(Icons.visibility)
-                ),
+                    border: OutlineInputBorder(),
+                    label: Text("Enter Your Password"),
+                    prefixIcon: Icon(Icons.lock),
+                    suffixIcon: Icon(Icons.visibility)),
               ),
             ),
           ],
         ),
       ),
-
     );
   }
-  Widget emailSection(){
+
+  Widget emailSection() {
     return TextField(
       controller: emailController,
       keyboardType: TextInputType.emailAddress,
@@ -73,8 +69,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-
-  Widget phoneSection(){
+  Widget phoneSection() {
     return TextField(
       controller: phoneController,
       keyboardType: TextInputType.number,
@@ -85,13 +80,12 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-  loginProviderToggle(){
-    if(loginWithEmail)
+
+  loginProviderToggle() {
+    if (loginWithEmail)
       loginWithEmail = false;
     else
       loginWithEmail = true;
-    setState(() {
-
-    });
+    setState(() {});
   }
 }
