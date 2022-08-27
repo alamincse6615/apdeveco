@@ -8,9 +8,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends StatefulWidget {
   List<Data> categoryList;
-  List<PData> productList;
+  List<Datal> productsList;
 
-  Home(this.categoryList, this.productList);
+
+
+  Home(this.categoryList, this.productsList);
 
   @override
   State<Home> createState() => _HomeState();
@@ -18,14 +20,19 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Data> categoryList = [];
-  List<PData> productList = [];
+
+  List<Datal> productsList = [];
+  // List<DataModel> dataList = [];
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     categoryList = widget.categoryList;
-    productList = widget.productList;
+
+    productsList = widget.productsList;
+    // productsList = widget.productsList;
+    // dataList = widget.dataList;
   }
 
   @override
@@ -192,12 +199,11 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
+
+
     );
   }
-
-
-
-  Widget buildHeaderSection(title) {
+    Widget buildHeaderSection(title) {
     return Container(
         padding: EdgeInsets.only(left: 5, right: 5),
         height: 30,
@@ -220,7 +226,10 @@ class _HomeState extends State<Home> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProductPage(productList)));
+                            builder: (context) => ProductPage(productsList)));
+
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ProductPage(productsList)));
                   }
                 },
                 child: Text("View All",
@@ -231,7 +240,6 @@ class _HomeState extends State<Home> {
           ],
         ));
   }
-
   Widget buildHeadersection(product) {
     return Container(
       height: MediaQuery.of(context).size.height,

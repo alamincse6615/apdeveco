@@ -51,6 +51,7 @@ class _LoginPageState extends State<LoginPage> {
                     suffixIcon: Icon(Icons.visibility)),
               ),
             ),
+            
           ],
         ),
       ),

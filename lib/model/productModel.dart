@@ -1,107 +1,80 @@
-class ProductsModel {
-  List<PData>? data;
-  // Links? links;
-  Meta? meta;
-  bool? success;
-  int? status;
+// class ProductModel {
+//   List<Data>? data;
+//   Links? links;
+//   Meta? meta;
+//   bool? success;
+//   int? status;
+//
+//   ProductModel({this.data, this.links, this.meta, this.success, this.status});
+//
+//   ProductModel.fromJson(Map<String, dynamic> json) {
+//     if (json['data'] != null) {
+//       data = <Data>[];
+//       json['data'].forEach((v) {
+//         data!.add(new Data.fromJson(v));
+//       });
+//     }
+//     links = json['links'] != null ? new Links.fromJson(json['links']) : null;
+//     meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+//     success = json['success'];
+//     status = json['status'];
+//   }
+//
+//   Map<String, dynamic> toJson() {
+//     final Map<String, dynamic> data = new Map<String, dynamic>();
+//     if (this.data != null) {
+//       data['data'] = this.data!.map((v) => v.toJson()).toList();
+//     }
+//     if (this.links != null) {
+//       data['links'] = this.links!.toJson();
+//     }
+//     if (this.meta != null) {
+//       data['meta'] = this.meta!.toJson();
+//     }
+//     data['success'] = this.success;
+//     data['status'] = this.status;
+//     return data;
+//   }
+// }
 
-  ProductsModel({this.data, this.meta, this.success, this.status});
-
-  ProductsModel.fromJson(Map<String, dynamic> json) {
-    if (json['data'] != null) {
-      data = <PData>[];
-      json['data'].forEach((v) {
-        data!.add(new PData.fromJson(v));
-      });
-    }
-    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
-    success = json['success'];
-    status = json['status'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.data != null) {
-      data['data'] = this.data!.map((v) => v.toJson()).toList();
-    }
-    if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
-    }
-    data['success'] = this.success;
-    data['status'] = this.status;
-    return data;
-  }
-}
-
-class PData {
+class Datal {
   int? id;
   String? name;
-  List<String>? photos;
   String? thumbnailImage;
-  int? basePrice;
-  double? baseDiscountedPrice;
-  int? todaysDeal;
-  int? featured;
-  String? unit;
-  double? discount;
-  String? discountType;
+  String? basePrice;
   int? rating;
   int? sales;
-  Meta ? meta;
+  Meta? meta;
 
-
-  PData(
+  Datal(
       {this.id,
         this.name,
-        this.photos,
         this.thumbnailImage,
         this.basePrice,
-        this.baseDiscountedPrice,
-        this.todaysDeal,
-        this.featured,
-        this.unit,
-        this.discount,
-        this.discountType,
         this.rating,
         this.sales,
-        this.meta
+        this.meta});
 
-      });
-
-  PData.fromJson(Map<String, dynamic> json) {
+  Datal.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
-    photos = json['photos'].cast<String>();
     thumbnailImage = json['thumbnail_image'];
     basePrice = json['base_price'];
-    baseDiscountedPrice = json['base_discounted_price'];
-    todaysDeal = json['todays_deal'];
-    featured = json['featured'];
-    unit = json['unit'];
-    discount = json['discount'];
-    discountType = json['discount_type'];
     rating = json['rating'];
     sales = json['sales'];
-    meta = json ['meta']!= null ? new Meta.fromJson(json['meta']) : null;
+    meta = json['meta'] != null ? new Meta.fromJson(json['links']) : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
     data['name'] = this.name;
-    data['photos'] = this.photos;
     data['thumbnail_image'] = this.thumbnailImage;
     data['base_price'] = this.basePrice;
-    data['base_discounted_price'] = this.baseDiscountedPrice;
-    data['todays_deal'] = this.todaysDeal;
-    data['featured'] = this.featured;
-    data['unit'] = this.unit;
-    data['discount'] = this.discount;
-    data['discount_type'] = this.discountType;
     data['rating'] = this.rating;
     data['sales'] = this.sales;
     if (this.meta != null) {
-      data['meta'] = this.meta!.toJson();
+      data['links'] = this.meta!.toJson();
     }
     return data;
   }
@@ -109,25 +82,16 @@ class PData {
 
 // class Links {
 //   String? details;
-//   String? reviews;
-//   String? related;
-//   String? topFromSeller;
 //
-//   Links({this.details, this.reviews, this.related, this.topFromSeller});
+//   Links({this.details});
 //
 //   Links.fromJson(Map<String, dynamic> json) {
 //     details = json['details'];
-//     reviews = json['reviews'];
-//     related = json['related'];
-//     topFromSeller = json['top_from_seller'];
 //   }
 //
 //   Map<String, dynamic> toJson() {
 //     final Map<String, dynamic> data = new Map<String, dynamic>();
 //     data['details'] = this.details;
-//     data['reviews'] = this.reviews;
-//     data['related'] = this.related;
-//     data['top_from_seller'] = this.topFromSeller;
 //     return data;
 //   }
 // }
