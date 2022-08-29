@@ -1,9 +1,13 @@
-import 'package:appdeveco/Json/category%20model.dart';
+
+import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/data/categoryData.dart';
+import 'package:appdeveco/model/productModel.dart';
 import 'package:appdeveco/screen/cart.dart';
 import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/home.dart';
+import 'package:appdeveco/screen/login_page.dart';
 import 'package:appdeveco/screen/profile.dart';
+import 'package:appdeveco/screen/sign_in.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -14,7 +18,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<CategoryModel> categoryList = [];
+  List<Data> categoryList = [];
+  List<Datal> productList = [];
   int selectedPage = 0;
 
   @override
@@ -25,6 +30,7 @@ class _DashboardState extends State<Dashboard> {
   getAllData()async{
     CategoryData categoryData = CategoryData();
     categoryList = await categoryData.getAlCategory();
+    print(categoryList);
     setState(() {
 
     });
@@ -34,7 +40,8 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: selectedPage==0?Home(categoryList):(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():Profile())),
+      body: selectedPage==0?Home(categoryList,productList):(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():Sign_in())),
+
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
         unselectedItemColor: Colors.grey,

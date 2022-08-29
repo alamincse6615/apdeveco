@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:appdeveco/Json/category%20model.dart';
+import 'package:appdeveco/model/category%20model.dart';
 import 'package:flutter/material.dart';
 
 
 class Category extends StatefulWidget {
-  List<CategoryModel> categoryList;
+  List<Data> categoryList;
   Category(this.categoryList);
 
   @override
@@ -13,7 +13,7 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
-  List<CategoryModel> dataList = [];
+  List<Data> dataList = [];
 
   @override
   void initState() {
@@ -27,7 +27,11 @@ class _CategoryState extends State<Category> {
         title: Text("Catagory"),
       ),
       body: Container(
-        height: MediaQuery.of(context).size.height - 100,
+      height: MediaQuery.of(context).size.height - 100,
+      child: InkWell(
+        onTap: (){
+
+        },
         child: ListView.builder(
           itemCount: dataList.length,
           itemBuilder: (BuildContext context, int index) {
@@ -43,18 +47,20 @@ class _CategoryState extends State<Category> {
                 subtitle: Row(
                   children: [
                     Text("Sub Category "),
-                    Text(dataList[index].number_of_children.toString()),
+                    //Text(dataList[index].number_of_children.toString()),
                   ],
                 ),
                 leading: Image.network(
-                "http://192.168.43.232/appdev/public/"+dataList[index].icon.toString()),
+                    "http://192.168.43.113:81/appdev/public/"+dataList[index].icon.toString()),
                 trailing: Image.network(
-                    "http://192.168.43.232/appdev/public/"+dataList[index].icon.toString()),
+                    "http://192.168.43.113:81/appdev/public/"+dataList[index].icon.toString()),
               ),
             );
           },
         ),
       ),
+      )
+        
     );
   }
 }
