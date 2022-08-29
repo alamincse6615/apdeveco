@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 
 class Category extends StatefulWidget {
-  List<Data> categoryList;
+  var categoryList;
   Category(this.categoryList);
 
   @override
