@@ -20,9 +20,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   List<Data> categoryList = [];
-
   List<Datal> productsList = [];
-  // List<DataModel> dataList = [];
 
   @override
   void initState() {
@@ -31,8 +29,7 @@ class _HomeState extends State<Home> {
     categoryList = widget.categoryList;
 
     productsList = widget.productsList;
-    // productsList = widget.productsList;
-    // dataList = widget.dataList;
+
   }
 
   @override
@@ -203,6 +200,7 @@ class _HomeState extends State<Home> {
 
     );
   }
+
     Widget buildHeaderSection(title) {
     return Container(
         padding: EdgeInsets.only(left: 5, right: 5),
@@ -240,6 +238,7 @@ class _HomeState extends State<Home> {
           ],
         ));
   }
+
   Widget buildHeadersection(product) {
     return Container(
       height: MediaQuery.of(context).size.height,
