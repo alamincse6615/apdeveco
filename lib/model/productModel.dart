@@ -1,68 +1,63 @@
-// class ProductModel {
-//   List<Data>? data;
-//   Links? links;
-//   Meta? meta;
-//   bool? success;
-//   int? status;
-//
-//   ProductModel({this.data, this.links, this.meta, this.success, this.status});
-//
-//   ProductModel.fromJson(Map<String, dynamic> json) {
-//     if (json['data'] != null) {
-//       data = <Data>[];
-//       json['data'].forEach((v) {
-//         data!.add(new Data.fromJson(v));
-//       });
-//     }
-//     links = json['links'] != null ? new Links.fromJson(json['links']) : null;
-//     meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
-//     success = json['success'];
-//     status = json['status'];
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     if (this.data != null) {
-//       data['data'] = this.data!.map((v) => v.toJson()).toList();
-//     }
-//     if (this.links != null) {
-//       data['links'] = this.links!.toJson();
-//     }
-//     if (this.meta != null) {
-//       data['meta'] = this.meta!.toJson();
-//     }
-//     data['success'] = this.success;
-//     data['status'] = this.status;
-//     return data;
-//   }
-// }
+class ProductModel {
+  List<Data>? data;
+  Meta? meta;
+  bool? success;
+  int? status;
 
-class Datal {
+  ProductModel({this.data, this.meta, this.success, this.status});
+
+  ProductModel.fromJson(Map<String, dynamic> json) {
+    if (json['data'] != null) {
+      data = <Data>[];
+      json['data'].forEach((v) {
+        data!.add(new Data.fromJson(v));
+      });
+    }
+    meta = json['meta'] != null ? new Meta.fromJson(json['meta']) : null;
+    success = json['success'];
+    status = json['status'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    if (this.data != null) {
+      data['data'] = this.data!.map((v) => v.toJson()).toList();
+    }
+    if (this.meta != null) {
+      data['meta'] = this.meta!.toJson();
+    }
+    data['success'] = this.success;
+    data['status'] = this.status;
+    return data;
+  }
+}
+
+class Data {
   int? id;
   String? name;
   String? thumbnailImage;
   String? basePrice;
   int? rating;
   int? sales;
-  Meta? meta;
+  Links? links;
 
-  Datal(
+  Data(
       {this.id,
         this.name,
         this.thumbnailImage,
         this.basePrice,
         this.rating,
         this.sales,
-        this.meta});
+        this.links});
 
-  Datal.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
     thumbnailImage = json['thumbnail_image'];
     basePrice = json['base_price'];
     rating = json['rating'];
     sales = json['sales'];
-    meta = json['meta'] != null ? new Meta.fromJson(json['links']) : null;
+    links = json['links'] != null ? new Links.fromJson(json['links']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -73,53 +68,28 @@ class Datal {
     data['base_price'] = this.basePrice;
     data['rating'] = this.rating;
     data['sales'] = this.sales;
-    if (this.meta != null) {
-      data['links'] = this.meta!.toJson();
+    if (this.links != null) {
+      data['links'] = this.links!.toJson();
     }
     return data;
   }
 }
 
-// class Links {
-//   String? details;
-//
-//   Links({this.details});
-//
-//   Links.fromJson(Map<String, dynamic> json) {
-//     details = json['details'];
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['details'] = this.details;
-//     return data;
-//   }
-// }
-//
-// class Links {
-//   String? first;
-//   String? last;
-//   Null? prev;
-//   Null? next;
-//
-//   Links({this.first, this.last, this.prev, this.next});
-//
-//   Links.fromJson(Map<String, dynamic> json) {
-//     first = json['first'];
-//     last = json['last'];
-//     prev = json['prev'];
-//     next = json['next'];
-//   }
-//
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     data['first'] = this.first;
-//     data['last'] = this.last;
-//     data['prev'] = this.prev;
-//     data['next'] = this.next;
-//     return data;
-//   }
-// }
+class Links {
+  String? details;
+
+  Links({this.details});
+
+  Links.fromJson(Map<String, dynamic> json) {
+    details = json['details'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['details'] = this.details;
+    return data;
+  }
+}
 
 class Meta {
   int? currentPage;

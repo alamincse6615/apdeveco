@@ -1,3 +1,5 @@
+import 'package:appdeveco/data/categoryData.dart';
+import 'package:appdeveco/data/productData.dart';
 import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/model/productModel.dart';
 import 'package:appdeveco/screen/category.dart';
@@ -7,29 +9,35 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends StatefulWidget {
-  List<Data> categoryList;
-  List<Datal> productsList;
-
-
-
-  Home(this.categoryList, this.productsList);
 
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  List<Data> categoryList = [];
-  List<Datal> productsList = [];
+
+  var categoryList = [];
+
+ var productsList = [];
+
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    categoryList = widget.categoryList;
+    getAllData();
+  }
 
-    productsList = widget.productsList;
 
+  getAllData()async{
+    CategoryData categoryData = CategoryData();
+    ProductData productData = ProductData();
+    categoryList = await categoryData.getAlCategory();
+    productsList = await productData.getAlProduct();
+    // productsList = await productData.getCategoryAlProduct(id);
+    setState(() {
+
+    });
   }
 
   @override
@@ -146,7 +154,7 @@ class _HomeState extends State<Home> {
                       height: 150,
                       child: InkWell(
                         onTap: () {},
-                        child: ListView.builder(
+                        child: categoryList.length==0?CircularProgressIndicator():ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: categoryList.length,
                           itemBuilder: (BuildContext context, int index) {
@@ -161,7 +169,7 @@ class _HomeState extends State<Home> {
                                   Image.network(
                                     height: 140,
                                     width: 140,
-                                    "http://192.168.43.113:81/appdev/public/" +
+                                    "https://e.shibcharnews.com/public/" +
                                         categoryList[index].icon.toString(),
                                     fit: BoxFit.cover,
                                   ),
@@ -190,7 +198,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     buildHeaderSection("Product"),
-                    buildHeadersection(""),
+                    buildProductHorizontalView(),
                   ],
                 )),
           ],
@@ -239,16 +247,16 @@ class _HomeState extends State<Home> {
         ));
   }
 
-  Widget buildHeadersection(product) {
+  Widget buildProductHorizontalView() {
     return Container(
       height: MediaQuery.of(context).size.height,
-      child: GridView.builder(
+      child: productsList.length==0?CircularProgressIndicator():GridView.builder(
         physics: ScrollPhysics(),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
               mainAxisSpacing: 10,
               mainAxisExtent: 105),
-          itemCount: 2000,
+          itemCount: productsList.length,
           // itemCount: productList.length,
           itemBuilder: (context, index) {
             return Padding(
@@ -271,15 +279,15 @@ class _HomeState extends State<Home> {
                   child: Column(
                     children: [
                       Image.network(
-                        "https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
+                        "https://e.shibcharnews.com/public/"+productsList[index].thumbnailImage.toString()??"https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
                         height: 70,
                         // "http://192.168.43.113:81/appdev/public/" +
                         //     productList[index].thumbnailImage.toString()
                       ),
-                      Text("Name"
+                      Text(productsList[index].name.toString()??""
                           // productList[index].name.toString()
                           ),
-                      Text("price"),
+                      Text(productsList[index].basePrice.toString()??""),
                     ],
                   ),
                 ),

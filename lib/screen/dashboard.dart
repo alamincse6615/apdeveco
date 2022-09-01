@@ -18,8 +18,8 @@ class Dashboard extends StatefulWidget {
 }
 
 class _DashboardState extends State<Dashboard> {
-  List<Data> categoryList = [];
-  List<Datal> productList = [];
+  var categoryList = [];
+  var productList = [];
   int selectedPage = 0;
 
   @override
@@ -40,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: selectedPage==0?Home(categoryList,productList):(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():Sign_in())),
+      body: selectedPage==0?Home():(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():Sign_in())),
 
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,
