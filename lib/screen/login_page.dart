@@ -1,5 +1,5 @@
-import 'package:appdeveco/screen/sign_in.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:appdeveco/screen/dashboard.dart';
+import 'package:appdeveco/screen/registration_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -52,7 +52,28 @@ class _LoginPageState extends State<LoginPage> {
                     suffixIcon: Icon(Icons.visibility)),
               ),
             ),
-            Singup()
+            Container(
+        child: ElevatedButton.icon(
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard()));
+            }, icon: Icon(Icons.create) , label: Text("Login")),
+      ),
+            Row(
+              children: <Widget>[
+                const Text('Create an account?'),
+                TextButton(
+                  child: const Text(
+                    'registration',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => RegistrationPage()));
+                  },
+                )
+              ],
+              mainAxisAlignment: MainAxisAlignment.center,
+            ),
             
           ],
         ),
@@ -91,11 +112,5 @@ class _LoginPageState extends State<LoginPage> {
       loginWithEmail = true;
     setState(() {});
   }
- Widget Singup (){
-    return Container(
-      child: ElevatedButton.icon(onPressed: (){
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>Sign_in ()));
-      }, icon: Icon(Icons.create) , label: Text("Sing Up")),
-    );
- }
+
 }

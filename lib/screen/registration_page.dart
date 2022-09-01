@@ -1,5 +1,6 @@
+import 'package:appdeveco/screen/dashboard.dart';
 import 'package:appdeveco/screen/login_page.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 // class FormPage extends StatefulWidget {
@@ -142,14 +143,14 @@ import 'package:flutter/material.dart';
 //     );
 //   }
 // }
-class Sign_in extends StatefulWidget {
-  const Sign_in({Key? key}) : super(key: key);
+class RegistrationPage extends StatefulWidget {
+  const RegistrationPage({Key? key}) : super(key: key);
 
   @override
-  State<Sign_in> createState() => _Sign_inState();
+  State<RegistrationPage> createState() => _RegistrationPageState();
 }
 
-class _Sign_inState extends State<Sign_in> {
+class _RegistrationPageState extends State<RegistrationPage> {
   bool loginWithEmail = true;
   String loginWithSectedSection = "Login With ";
   TextEditingController nameController = TextEditingController();
@@ -158,16 +159,23 @@ class _Sign_inState extends State<Sign_in> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController registerController = TextEditingController();
 
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("test");
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: const EdgeInsets.all(10),
-        child: ListView(
+    return Scaffold(
+        body: ListView(
           children: <Widget>[
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                controller: nameController,
+                //controller: nameController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Write your name',
@@ -194,7 +202,7 @@ class _Sign_inState extends State<Sign_in> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: TextField(
-                controller: passwordController,
+               // controller: passwordController,
                 keyboardType: TextInputType.visiblePassword,
                 obscureText: true,
                 decoration: InputDecoration(
@@ -220,7 +228,7 @@ class _Sign_inState extends State<Sign_in> {
             Container(
               padding: const EdgeInsets.all(10),
               child: TextField(
-                controller: registerController,
+                //controller: registerController,
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
                   labelText: 'Registered by',
@@ -241,7 +249,7 @@ class _Sign_inState extends State<Sign_in> {
                 const Text('Already have an account?'),
                 TextButton(
                   child: const Text(
-                    'Sign in',
+                    'login',
                     style: TextStyle(fontSize: 20),
                   ),
                   onPressed: () {
@@ -302,5 +310,9 @@ class _Sign_inState extends State<Sign_in> {
       "password": password,
       "registeredBy": registeredBy,
     };
+
+
+
+    Navigator.push(context,MaterialPageRoute(builder: (context) => Dashboard()));
   }
 }

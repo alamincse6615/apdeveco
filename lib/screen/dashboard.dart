@@ -7,7 +7,7 @@ import 'package:appdeveco/screen/category.dart';
 import 'package:appdeveco/screen/home.dart';
 import 'package:appdeveco/screen/login_page.dart';
 import 'package:appdeveco/screen/profile.dart';
-import 'package:appdeveco/screen/sign_in.dart';
+import 'package:appdeveco/screen/registration_page.dart';
 import 'package:flutter/material.dart';
 
 class Dashboard extends StatefulWidget {
@@ -40,7 +40,7 @@ class _DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: selectedPage==0?Home():(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():Sign_in())),
+      body: selectedPage==0?Home():(selectedPage==1?Category(categoryList):(selectedPage==2?Cart():LoginPage())),
 
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.green,

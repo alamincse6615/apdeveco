@@ -23,6 +23,18 @@ class ProductData{
 
   Future<List<CategoryProductModelData>>getCategoryProduct(id) async {
     late CategoryProductModel categoryProductModel;
+    String productsUrl = "https://e.shibcharnews.com/api/v2/products/category/"+id.toString();
+    var result = await http.get(Uri.parse(productsUrl));
+    var JsonData = jsonDecode(result.body);
+    if (jsonDecode(result.body)["success"])
+      categoryProductModel = CategoryProductModel.fromJson(JsonData);
+    if(categoryProductModel.status==200 && categoryProductModel.categoryProductModelDataList!=null)
+      categoryProductList = categoryProductModel.categoryProductModelDataList!;
+    return categoryProductList;
+  }
+
+  Future<List<CategoryProductModelData>>getProductDetails(id) async {
+    late CategoryProductModel categoryProductModel;
     String productsUrl = "https://e.shibcharnews.com/api/v2/products/"+id.toString();
     var result = await http.get(Uri.parse(productsUrl));
     var JsonData = jsonDecode(result.body);
