@@ -16,6 +16,7 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
   var categoryList = [];
 
  var productsList = [];
@@ -28,13 +29,17 @@ class _HomeState extends State<Home> {
     getAllData();
   }
 
+
   getAllData()async{
     CategoryData categoryData = CategoryData();
     ProductData productData = ProductData();
     categoryList = await categoryData.getAlCategory();
     productsList = await productData.getAlProduct();
+
     //productsList = await productData.getCategoryAlProduct(id);
-    print(categoryList);
+
+    // productsList = await productData.getCategoryAlProduct(id);
+
     setState(() {
 
     });
@@ -222,6 +227,7 @@ class _HomeState extends State<Home> {
 
     );
   }
+
     Widget buildHeaderSection(title) {
     return Container(
         padding: EdgeInsets.only(left: 5, right: 5),
@@ -259,6 +265,7 @@ class _HomeState extends State<Home> {
           ],
         ));
   }
+
   Widget buildProductHorizontalView() {
     return Container(
       height: MediaQuery.of(context).size.height,

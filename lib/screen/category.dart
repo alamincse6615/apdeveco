@@ -46,14 +46,13 @@ class _CategoryState extends State<Category> {
                 title: Text(dataList[index].name.toString()),
                 subtitle: Row(
                   children: [
-                    Text("Sub Category "),
-                    //Text(dataList[index].number_of_children.toString()),
+                    Text(dataList[index].id.toString()),
                   ],
                 ),
                 leading: Image.network(
-                    "http://192.168.43.113:81/appdev/public/"+dataList[index].icon.toString()),
+                    "https://e.shibcharnews.com/public/"+dataList[index].icon.toString()),
                 trailing: Image.network(
-                    "http://192.168.43.113:81/appdev/public/"+dataList[index].icon.toString()),
+                    "https://e.shibcharnews.com/public/"+dataList[index].icon.toString()),
               ),
             );
           },

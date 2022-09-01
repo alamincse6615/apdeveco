@@ -1,3 +1,4 @@
+import 'package:appdeveco/screen/sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -51,6 +52,7 @@ class _LoginPageState extends State<LoginPage> {
                     suffixIcon: Icon(Icons.visibility)),
               ),
             ),
+            Singup()
             
           ],
         ),
@@ -89,4 +91,11 @@ class _LoginPageState extends State<LoginPage> {
       loginWithEmail = true;
     setState(() {});
   }
+ Widget Singup (){
+    return Container(
+      child: ElevatedButton.icon(onPressed: (){
+        Navigator.push(context, MaterialPageRoute(builder: (context)=>Sign_in ()));
+      }, icon: Icon(Icons.create) , label: Text("Sing Up")),
+    );
+ }
 }
