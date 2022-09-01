@@ -3,6 +3,7 @@ import 'package:appdeveco/data/productData.dart';
 import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/model/productModel.dart';
 import 'package:appdeveco/screen/category.dart';
+import 'package:appdeveco/screen/category_product.dart';
 import 'package:appdeveco/screen/product_Details.dart';
 import 'package:appdeveco/screen/product_page.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _HomeState extends State<Home> {
     ProductData productData = ProductData();
     categoryList = await categoryData.getAlCategory();
     productsList = await productData.getAlProduct();
-    productsList = await productData.getCategoryAlProduct(id);
+    //productsList = await productData.getCategoryAlProduct(id);
     print(categoryList);
     setState(() {
 
@@ -152,44 +153,58 @@ class _HomeState extends State<Home> {
                     Container(
                       height: 150,
                       child: InkWell(
-                        onTap: () {},
+                        onTap: () {
+
+                        },
                         child: categoryList.length==0?CircularProgressIndicator():ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: categoryList.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                              height: 140,
-                              width: 140,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.green)),
-                              child: Stack(
-                                children: [
-                                  Image.network(
-                                    height: 140,
-                                    width: 140,
-                                    "https://e.shibcharnews.com/public/" +
-                                        categoryList[index].icon.toString(),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Container(
-                                    height: 140,
-                                    width: 140,
-                                    alignment: Alignment.bottomCenter,
-                                    decoration: BoxDecoration(),
-                                    child: Container(
-                                        height: 30,
-                                        width: 140,
-                                        color: Color(0x74050505),
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          categoryList[index].name.toString(),
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18),
-                                        )),
+                            return InkWell(
+                              onTap: (){
+                                if(categoryList[index].id == null){
+
+                                }else{
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CategoryProduct(
+                                      int.parse(categoryList[index].id.toString()))
                                   )
-                                ],
+                                  );
+                                }
+                              },
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                height: 140,
+                                width: 140,
+                                decoration: BoxDecoration(
+                                    border: Border.all(color: Colors.green)),
+                                child: Stack(
+                                  children: [
+                                    Image.network(
+                                      height: 140,
+                                      width: 140,
+                                      "https://e.shibcharnews.com/public/" +
+                                          categoryList[index].icon.toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Container(
+                                      height: 140,
+                                      width: 140,
+                                      alignment: Alignment.bottomCenter,
+                                      decoration: BoxDecoration(),
+                                      child: Container(
+                                          height: 30,
+                                          width: 140,
+                                          color: Color(0x74050505),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            categoryList[index].name.toString(),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                          )),
+                                    )
+                                  ],
+                                ),
                               ),
                             );
                           },
