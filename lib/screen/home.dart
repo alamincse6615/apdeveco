@@ -3,13 +3,13 @@ import 'package:appdeveco/data/productData.dart';
 import 'package:appdeveco/model/category%20model.dart';
 import 'package:appdeveco/model/productModel.dart';
 import 'package:appdeveco/screen/category.dart';
+import 'package:appdeveco/screen/category_product.dart';
 import 'package:appdeveco/screen/product_Details.dart';
 import 'package:appdeveco/screen/product_page.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends StatefulWidget {
-
   @override
   State<Home> createState() => _HomeState();
 }
@@ -17,8 +17,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   var categoryList = [];
 
- var productsList = [];
-
+  var productsList = [];
 
   @override
   void initState() {
@@ -27,16 +26,13 @@ class _HomeState extends State<Home> {
     getAllData();
   }
 
-  getAllData()async{
+  getAllData() async {
     CategoryData categoryData = CategoryData();
     ProductData productData = ProductData();
     categoryList = await categoryData.getAlCategory();
     productsList = await productData.getAlProduct();
-    // productsList = await productData.getCategoryAlProduct(id);
-    print(categoryList);
-    setState(() {
 
-    });
+    setState(() {});
   }
 
   @override
@@ -60,9 +56,9 @@ class _HomeState extends State<Home> {
                             width: 250,
                             child: Center(
                                 child: Text(
-                              "Saturday",
-                              style: TextStyle(fontSize: 50),
-                            )),
+                                  "Saturday",
+                                  style: TextStyle(fontSize: 50),
+                                )),
                           ),
                         ),
                         Card(
@@ -73,9 +69,9 @@ class _HomeState extends State<Home> {
                             width: 250,
                             child: Center(
                                 child: Text(
-                              "Sunday",
-                              style: TextStyle(fontSize: 50),
-                            )),
+                                  "Sunday",
+                                  style: TextStyle(fontSize: 50),
+                                )),
                           ),
                         ),
                         Card(
@@ -86,9 +82,9 @@ class _HomeState extends State<Home> {
                             width: 250,
                             child: Center(
                                 child: Text(
-                              "Monday",
-                              style: TextStyle(fontSize: 50),
-                            )),
+                                  "Monday",
+                                  style: TextStyle(fontSize: 50),
+                                )),
                           ),
                         ),
                         Card(
@@ -99,9 +95,9 @@ class _HomeState extends State<Home> {
                             width: 250,
                             child: Center(
                                 child: Text(
-                              "Tuesday",
-                              style: TextStyle(fontSize: 50),
-                            )),
+                                  "Tuesday",
+                                  style: TextStyle(fontSize: 50),
+                                )),
                           ),
                         ),
                         Card(
@@ -112,9 +108,9 @@ class _HomeState extends State<Home> {
                             width: 250,
                             child: Center(
                                 child: Text(
-                              "Wednesday",
-                              style: TextStyle(fontSize: 40),
-                            )),
+                                  "Wednesday",
+                                  style: TextStyle(fontSize: 40),
+                                )),
                           ),
                         ),
                         Card(
@@ -125,9 +121,9 @@ class _HomeState extends State<Home> {
                             width: 250,
                             child: Center(
                                 child: Text(
-                              "Thursday",
-                              style: TextStyle(fontSize: 50),
-                            )),
+                                  "Thursday",
+                                  style: TextStyle(fontSize: 50),
+                                )),
                           ),
                         ),
                         Card(
@@ -153,43 +149,81 @@ class _HomeState extends State<Home> {
                       height: 150,
                       child: InkWell(
                         onTap: () {},
-                        child: categoryList.length==0?CircularProgressIndicator():ListView.builder(
+                        child: categoryList.length == 0
+                            ? CircularProgressIndicator()
+                            : ListView.builder(
                           scrollDirection: Axis.horizontal,
                           itemCount: categoryList.length,
                           itemBuilder: (BuildContext context, int index) {
-                            return Container(
-                              margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                              height: 140,
-                              width: 140,
-                              decoration: BoxDecoration(
-                                  border: Border.all(color: Colors.green)),
-                              child: Stack(
-                                children: [
-                                  Image.network(
-                                    height: 140,
-                                    width: 140,
-                                    "https://e.shibcharnews.com/public/" +
-                                        categoryList[index].icon.toString(),
-                                    fit: BoxFit.cover,
-                                  ),
-                                  Container(
-                                    height: 140,
-                                    width: 140,
-                                    alignment: Alignment.bottomCenter,
-                                    decoration: BoxDecoration(),
-                                    child: Container(
-                                        height: 30,
-                                        width: 140,
-                                        color: Color(0x74050505),
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          categoryList[index].name.toString(),
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 18),
-                                        )),
-                                  )
-                                ],
+                            return InkWell(
+                              onTap: () {
+                                if (categoryList[index].id==null) {
+                                  showDialog(
+                                      context: context, builder: (context)=>
+                                      AlertDialog(
+                                        title: Text("Products Namne"),
+                                        content: Text("Stok Out"),
+                                        actions: [
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+                                            },
+                                            child: Text("Okay"),
+                                          ),
+
+                                        ],
+                                      )
+                                  );
+                                } else {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              CategoryProduct(int.parse(
+                                                  categoryList[index]
+                                                      .id
+                                                      .toString()))));
+                                }
+                              },
+                              child: Container(
+                                margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                                height: 140,
+                                width: 140,
+                                decoration: BoxDecoration(
+                                    border:
+                                    Border.all(color: Colors.green)),
+                                child: Stack(
+                                  children: [
+                                    Image.network(
+                                      height: 140,
+                                      width: 140,
+                                      "https://e.shibcharnews.com/public/" +
+                                          categoryList[index]
+                                              .icon
+                                              .toString(),
+                                      fit: BoxFit.cover,
+                                    ),
+                                    Container(
+                                      height: 140,
+                                      width: 140,
+                                      alignment: Alignment.bottomCenter,
+                                      decoration: BoxDecoration(),
+                                      child: Container(
+                                          height: 30,
+                                          width: 140,
+                                          color: Color(0x74050505),
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            categoryList[index]
+                                                .name
+                                                .toString(),
+                                            style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 18),
+                                          )),
+                                    )
+                                  ],
+                                ),
                               ),
                             );
                           },
@@ -203,11 +237,10 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-
-
     );
   }
-    Widget buildHeaderSection(title) {
+
+  Widget buildHeaderSection(title) {
     return Container(
         padding: EdgeInsets.only(left: 5, right: 5),
         height: 30,
@@ -232,8 +265,10 @@ class _HomeState extends State<Home> {
                         MaterialPageRoute(
                             builder: (context) => ProductPage(productsList)));
 
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProductPage(productsList)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProductPage(productsList)));
                   }
                 },
                 child: Text("View All",
@@ -244,17 +279,19 @@ class _HomeState extends State<Home> {
           ],
         ));
   }
+
   Widget buildProductHorizontalView() {
     return Container(
       height: MediaQuery.of(context).size.height,
-      child: productsList.length==0?CircularProgressIndicator():GridView.builder(
-        physics: ScrollPhysics(),
+      child: productsList.length == 0
+          ? CircularProgressIndicator()
+          : GridView.builder(
+          physics: ScrollPhysics(),
           gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
               mainAxisSpacing: 10,
               mainAxisExtent: 105),
           itemCount: productsList.length,
-          // itemCount: productList.length,
           itemBuilder: (context, index) {
             return Padding(
               padding: const EdgeInsets.only(
@@ -276,15 +313,15 @@ class _HomeState extends State<Home> {
                   child: Column(
                     children: [
                       Image.network(
-                        "https://e.shibcharnews.com/public/"+productsList[index].thumbnailImage.toString()??"https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
+                        "https://e.shibcharnews.com/public/" +
+                            productsList[index]
+                                .thumbnailImage
+                                .toString() ??
+                            "https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
                         height: 70,
-                        // "http://192.168.43.113:81/appdev/public/" +
-                        //     productList[index].thumbnailImage.toString()
                       ),
-                      Text(productsList[index].name.toString()??""
-                          // productList[index].name.toString()
-                          ),
-                      Text(productsList[index].basePrice.toString()??""),
+                      Text(productsList[index].name.toString() ?? ""),
+                      Text(productsList[index].basePrice.toString() ?? ""),
                     ],
                   ),
                 ),
