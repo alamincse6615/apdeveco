@@ -13,7 +13,7 @@ class Category extends StatefulWidget {
 }
 
 class _CategoryState extends State<Category> {
-  List<Data> dataList = [];
+  var dataList ;
 
   @override
   void initState() {

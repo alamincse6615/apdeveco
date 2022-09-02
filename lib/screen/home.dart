@@ -10,17 +10,14 @@ import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
 class Home extends StatefulWidget {
-
   @override
   State<Home> createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-
   var categoryList = [];
 
- var productsList = [];
-
+  var productsList = [];
 
   @override
   void initState() {
@@ -29,20 +26,13 @@ class _HomeState extends State<Home> {
     getAllData();
   }
 
-
-  getAllData()async{
+  getAllData() async {
     CategoryData categoryData = CategoryData();
     ProductData productData = ProductData();
     categoryList = await categoryData.getAlCategory();
     productsList = await productData.getAlProduct();
 
-    //productsList = await productData.getCategoryAlProduct(id);
-
-    // productsList = await productData.getCategoryAlProduct(id);
-
-    setState(() {
-
-    });
+    setState(() {});
   }
 
   @override
@@ -158,62 +148,86 @@ class _HomeState extends State<Home> {
                     Container(
                       height: 150,
                       child: InkWell(
-                        onTap: () {
+                        onTap: () {},
+                        child: categoryList.length == 0
+                            ? CircularProgressIndicator()
+                            : ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemCount: categoryList.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return InkWell(
+                                    onTap: () {
+                                      if (categoryList[index].id==null) {
+                                        showDialog(
+                                            context: context, builder: (context)=>
+                                            AlertDialog(
+                                              title: Text("Products Namne"),
+                                              content: Text("Stok Out"),
+                                              actions: [
+                                                ElevatedButton(
+                                                  onPressed: () {
+                                                    Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
+                                                  },
+                                                  child: Text("Okay"),
+                                                ),
 
-                        },
-                        child: categoryList.length==0?CircularProgressIndicator():ListView.builder(
-                          scrollDirection: Axis.horizontal,
-                          itemCount: categoryList.length,
-                          itemBuilder: (BuildContext context, int index) {
-                            return InkWell(
-                              onTap: (){
-                                if(categoryList[index].id == null){
-
-                                }else{
-                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>CategoryProduct(
-                                      int.parse(categoryList[index].id.toString()))
-                                  )
-                                  );
-                                }
-                              },
-                              child: Container(
-                                margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-                                height: 140,
-                                width: 140,
-                                decoration: BoxDecoration(
-                                    border: Border.all(color: Colors.green)),
-                                child: Stack(
-                                  children: [
-                                    Image.network(
+                                              ],
+                                            )
+                                        );
+                                      } else {
+                                        Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    CategoryProduct(int.parse(
+                                                        categoryList[index]
+                                                            .id
+                                                            .toString()))));
+                                      }
+                                    },
+                                    child: Container(
+                                      margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
                                       height: 140,
                                       width: 140,
-                                      "https://e.shibcharnews.com/public/" +
-                                          categoryList[index].icon.toString(),
-                                      fit: BoxFit.cover,
+                                      decoration: BoxDecoration(
+                                          border:
+                                              Border.all(color: Colors.green)),
+                                      child: Stack(
+                                        children: [
+                                          Image.network(
+                                            height: 140,
+                                            width: 140,
+                                            "https://e.shibcharnews.com/public/" +
+                                                categoryList[index]
+                                                    .icon
+                                                    .toString(),
+                                            fit: BoxFit.cover,
+                                          ),
+                                          Container(
+                                            height: 140,
+                                            width: 140,
+                                            alignment: Alignment.bottomCenter,
+                                            decoration: BoxDecoration(),
+                                            child: Container(
+                                                height: 30,
+                                                width: 140,
+                                                color: Color(0x74050505),
+                                                alignment: Alignment.center,
+                                                child: Text(
+                                                  categoryList[index]
+                                                      .name
+                                                      .toString(),
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 18),
+                                                )),
+                                          )
+                                        ],
+                                      ),
                                     ),
-                                    Container(
-                                      height: 140,
-                                      width: 140,
-                                      alignment: Alignment.bottomCenter,
-                                      decoration: BoxDecoration(),
-                                      child: Container(
-                                          height: 30,
-                                          width: 140,
-                                          color: Color(0x74050505),
-                                          alignment: Alignment.center,
-                                          child: Text(
-                                            categoryList[index].name.toString(),
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18),
-                                          )),
-                                    )
-                                  ],
-                                ),
+                                  );
+                                },
                               ),
-                            );
-                          },
-                        ),
                       ),
                     ),
                     buildHeaderSection("Product"),
@@ -223,12 +237,10 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-
-
     );
   }
 
-    Widget buildHeaderSection(title) {
+  Widget buildHeaderSection(title) {
     return Container(
         padding: EdgeInsets.only(left: 5, right: 5),
         height: 30,
@@ -253,8 +265,10 @@ class _HomeState extends State<Home> {
                         MaterialPageRoute(
                             builder: (context) => ProductPage(productsList)));
 
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ProductPage(productsList)));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ProductPage(productsList)));
                   }
                 },
                 child: Text("View All",
@@ -269,50 +283,51 @@ class _HomeState extends State<Home> {
   Widget buildProductHorizontalView() {
     return Container(
       height: MediaQuery.of(context).size.height,
-      child: productsList.length==0?CircularProgressIndicator():GridView.builder(
-        physics: ScrollPhysics(),
-          gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: 200,
-              mainAxisSpacing: 10,
-              mainAxisExtent: 105),
-          itemCount: productsList.length,
-          // itemCount: productList.length,
-          itemBuilder: (context, index) {
-            return Padding(
-              padding: const EdgeInsets.only(
-                left: 5,
-                right: 5,
-              ),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => ProductDetails()));
-                  // productList[index]
-                },
-                child: Container(
-                  height: 200,
-                  width: 100,
-                  color: Colors.white30,
-                  child: Column(
-                    children: [
-                      Image.network(
-                        "https://e.shibcharnews.com/public/"+productsList[index].thumbnailImage.toString()??"https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
-                        height: 70,
-                        // "http://192.168.43.113:81/appdev/public/" +
-                        //     productList[index].thumbnailImage.toString()
-                      ),
-                      Text(productsList[index].name.toString()??""
-                          // productList[index].name.toString()
-                          ),
-                      Text(productsList[index].basePrice.toString()??""),
-                    ],
+      child: productsList.length == 0
+          ? CircularProgressIndicator()
+          : GridView.builder(
+              physics: ScrollPhysics(),
+              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                  maxCrossAxisExtent: 200,
+                  mainAxisSpacing: 10,
+                  mainAxisExtent: 105),
+              itemCount: productsList.length,
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(
+                    left: 5,
+                    right: 5,
                   ),
-                ),
-              ),
-            );
-          }),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ProductDetails()));
+                      // productList[index]
+                    },
+                    child: Container(
+                      height: 200,
+                      width: 100,
+                      color: Colors.white30,
+                      child: Column(
+                        children: [
+                          Image.network(
+                            "https://e.shibcharnews.com/public/" +
+                                    productsList[index]
+                                        .thumbnailImage
+                                        .toString() ??
+                                "https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
+                            height: 70,
+                          ),
+                          Text(productsList[index].name.toString() ?? ""),
+                          Text(productsList[index].basePrice.toString() ?? ""),
+                        ],
+                      ),
+                    ),
+                  ),
+                );
+              }),
     );
   }
 }

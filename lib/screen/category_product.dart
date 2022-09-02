@@ -85,7 +85,6 @@ class _CategoryProductState extends State<CategoryProduct> {
                       context,
                       MaterialPageRoute(
                           builder: (context) => ProductDetails()));
-                  // productList[index]
                 },
                 child: Container(
                   height: 230,
@@ -96,11 +95,8 @@ class _CategoryProductState extends State<CategoryProduct> {
                       Image.network(
                         "https://e.shibcharnews.com/public/"+categoryProductsList[index].thumbnailImage.toString()??"https://productmanagementfestival.com/wp-content/uploads/2017/01/sell-your-product-online.jpg",
                         height: 70,
-                        // "http://192.168.43.113:81/appdev/public/" +
-                        //     productList[index].thumbnailImage.toString()
                       ),
                       Text(categoryProductsList[index].name.toString()??""
-                        // productList[index].name.toString()
                       ),
                       Text(
                           categoryProductsList[index].strokedPrice.toString()??"",
