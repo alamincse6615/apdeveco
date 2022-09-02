@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 
 class ProductPage extends StatefulWidget {
 
-  List<Datal> productList;
+  var productList;
   ProductPage(this.productList);
 
 
@@ -15,7 +15,7 @@ class ProductPage extends StatefulWidget {
 }
 
 class _ProductPageState extends State<ProductPage> {
-  List<Datal> dataList = [];
+ var dataList = [];
 
   @override
   void initState() {

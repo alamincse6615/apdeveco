@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 
 class Category extends StatefulWidget {
-  List<Data> categoryList;
+  var categoryList;
   Category(this.categoryList);
 
   @override
@@ -35,25 +35,30 @@ class _CategoryState extends State<Category> {
         child: ListView.builder(
           itemCount: dataList.length,
           itemBuilder: (BuildContext context, int index) {
-            return Container(
-              margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
-              height: 80,
-              width: MediaQuery.of(context).size.width-10,
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(.2),
-              ),
-              child: ListTile(
-                title: Text(dataList[index].name.toString()),
-                subtitle: Row(
-                  children: [
-                    Text("Sub Category "),
-                    //Text(dataList[index].number_of_children.toString()),
-                  ],
+            return InkWell(
+              onTap: (){
+
+              },
+              child: Container(
+                margin: EdgeInsets.fromLTRB(5, 5, 5, 0),
+                height: 80,
+                width: MediaQuery.of(context).size.width-10,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(.2),
                 ),
-                leading: Image.network(
-                    "http://192.168.43.113:81/appdev/public/"+dataList[index].icon.toString()),
-                trailing: Image.network(
-                    "http://192.168.43.113:81/appdev/public/"+dataList[index].icon.toString()),
+                child: ListTile(
+                  title: Text(dataList[index].name.toString()),
+                  subtitle: Row(
+                    children: [
+                      Text("Sub Category "),
+                      //Text(dataList[index].number_of_children.toString()),
+                    ],
+                  ),
+                  leading: Image.network(
+                      "https://e.shibcharnews.com/public/"+dataList[index].icon.toString()),
+                  // trailing: Image.network(
+                  //     "https://e.shibcharnews.com/public/"+dataList[index].icon.toString()),
+                ),
               ),
             );
           },
